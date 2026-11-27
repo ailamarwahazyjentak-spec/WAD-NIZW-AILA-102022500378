@@ -1,0 +1,824 @@
+/* Variabel palet warna utama, tipografi, dan ukuran sudut membulat global */
+:root {
+    --biru:        #4a90e2;
+    --biru-tombol: #2f72c4;
+    --biru-hover:  #255fa6;
+    --latar:       #f4f7f6;
+    --teks:        #2b2f33;
+    --teks-redup:  #5f666d;
+    --garis:       #e5e9ec;
+    --merah:       #b83c37;
+    --radius:      8px;
+}
+
+/* Reset margin, padding, dan box-sizing standar agar ukuran elemen konsisten */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Tata letak dasar halaman menggunakan flex column agar footer tetap di bawah */
+body {
+    background-color: var(--latar);
+    color: var(--teks);
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Gaya tipografi standar untuk judul halaman dan judul kartu */
+h2 {
+    color: var(--teks);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* Indikator fokus keyboard untuk aksesibilitas navigasi dan kontrol form */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(74, 144, 226, 0.5);
+    outline-offset: 2px;
+}
+
+/* Menyembunyikan label secara visual namun tetap terbaca oleh pembaca layar */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Bilah navigasi utama di bagian atas halaman dengan posisi sticky */
+.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    min-height: 62px;
+    background: #ffffff;
+    box-shadow: 0 1px 0 var(--garis), 0 2px 10px rgba(0, 0, 0, 0.04);
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 0 30px;
+}
+
+/* Tautan merek aplikasi di sisi kiri navbar */
+.topnav .brand {
+    display: inline-flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--teks);
+    text-decoration: none;
+    padding: 14px 0;
+}
+
+.topnav .brand:hover {
+    color: var(--biru-tombol);
+}
+
+/* Wadah daftar menu navigasi dan kontrol akun di sisi kanan navbar */
+.topnav .menu {
+    display: flex;
+    align-items: stretch;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+
+/* Tautan menu navigasi beserta garis bawah penanda halaman aktif */
+.topnav .menu a {
+    display: inline-flex;
+    align-items: center;
+    color: var(--teks-redup);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 2px;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.topnav .menu a:hover {
+    color: var(--biru-tombol);
+}
+
+.topnav .menu a.active {
+    color: var(--biru-tombol);
+    font-weight: 700;
+    border-bottom-color: var(--biru);
+}
+
+/* Penjajaran kapsul role dan tombol keluar pada navbar */
+.topnav .menu .user-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 24px;
+    margin: 12px 0;
+    border-left: 1px solid var(--garis);
+}
+
+.topnav .menu .user-box form {
+    display: inline-flex;
+    margin: 0;
+}
+
+/* Tombol keluar (logout) pada navbar */
+.btn-logout {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    background: #ffffff;
+    color: var(--teks-redup);
+    border: 1px solid #c9d0d5;
+    border-radius: 6px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.btn-logout:hover {
+    background: #eef1f3;
+    color: var(--teks);
+    border-color: #b4bec5;
+}
+
+/* Area konten utama untuk menampung notifikasi dan kartu halaman */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 32px 24px 48px;
+}
+
+/* Kartu lebar untuk halaman dashboard, tabel katalog, dan detail ekspedisi */
+.container {
+    width: 100%;
+    max-width: 1100px;
+    background: #ffffff;
+    padding: 28px 32px 32px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* Kartu sempit untuk halaman formulir tambah dan ubah data */
+.card {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    padding: 32px 36px 34px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+    font-size: 22px;
+    text-align: center;
+}
+
+/* Pemusatan vertikal dan horizontal kartu khusus halaman login */
+.card-login {
+    max-width: 420px;
+    margin: auto;
+}
+
+/* Tata letak kartu terpusat untuk halaman kesalahan akses (Error 403) */
+.card-error {
+    max-width: 460px;
+    margin: auto;
+    text-align: center;
+    padding: 36px 32px;
+}
+
+.card-error h2 {
+    margin-top: 14px;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.error-message {
+    color: var(--teks-redup);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+/* Kepala kartu formulir dan login untuk menengahkan judul dan subjudul */
+.form-header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--garis);
+}
+
+.form-header h2 {
+    margin-bottom: 6px;
+}
+
+.form-header .subtitle {
+    margin-top: 0;
+}
+
+/* Bagian kaki halaman (footer) di bawah konten utama */
+.footer {
+    text-align: center;
+    color: var(--teks-redup);
+    font-size: 13px;
+    padding: 18px 24px;
+}
+
+/* Baris header halaman untuk menyandingkan judul dengan tombol aksi */
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    gap: 16px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Subjudul deskriptif di bawah judul utama halaman */
+.subtitle {
+    color: var(--teks-redup);
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* Baris metadata ringkas pada halaman detail ekspedisi */
+.meta-inline {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    margin-top: 8px;
+    color: var(--teks-redup);
+    font-size: 14px;
+}
+
+.meta-sep {
+    color: #c2c9d0;
+}
+
+/* Grid 3 kolom untuk kartu ringkasan statistik pada dashboard admin */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Kartu statistik individual untuk masing-masing modul ekspedisi */
+.stat-card {
+    background: #fbfcfd;
+    border: 1px solid var(--garis);
+    border-radius: 10px;
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+    transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+}
+
+.stat-card:hover {
+    background: #ffffff;
+    border-color: #c5d9f1;
+    box-shadow: 0 4px 14px rgba(47, 114, 196, 0.08);
+}
+
+/* Susunan bagian atas, angka utama, dan pintasan bawah kartu statistik */
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--teks-redup);
+}
+
+.stat-body {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.stat-value {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--teks);
+    font-variant-numeric: tabular-nums;
+}
+
+.stat-unit {
+    font-size: 13px;
+    color: var(--teks-redup);
+}
+
+.stat-footer {
+    padding-top: 14px;
+    border-top: 1px solid var(--garis);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--biru-tombol);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.stat-link:hover {
+    color: var(--biru-hover);
+    text-decoration: underline;
+}
+
+/* Tombol aksi utama berwarna biru untuk tambah data dan submit form */
+.btn-tambah,
+.btn-submit {
+    background-color: var(--biru-tombol);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.btn-tambah {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    font-size: 14px;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 15px;
+}
+
+.btn-tambah:hover,
+.btn-submit:hover {
+    background-color: var(--biru-hover);
+}
+
+/* Tombol sekunder berlatar putih untuk aksi kembali */
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 16px;
+    background: #ffffff;
+    color: var(--teks-redup);
+    border: 1px solid #c9d0d5;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.btn-secondary:hover {
+    background: #f2f5f7;
+    color: var(--teks);
+    border-color: #b4bec5;
+}
+
+/* Pembungkus tabel agar dapat digulir horizontal pada layar sempit */
+.table-wrap {
+    overflow-x: auto;
+}
+
+/* Struktur dasar tabel data beserta header dan efek sorot baris */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+}
+
+th, td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--garis);
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #f6f8fa;
+    color: #444b52;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background-color: #f7fafe;
+}
+
+/* Tautan pada sel tabel (seperti nama kurir) tanpa garis bawah default browser */
+table td a:not(.btn-edit) {
+    color: var(--teks);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px dashed #b6c3ce;
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+table td a:not(.btn-edit):hover {
+    color: var(--biru-tombol);
+    border-bottom-style: solid;
+    border-bottom-color: var(--biru-tombol);
+}
+
+/* Tampilan pesan saat data pada tabel masih kosong */
+.empty-data {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--teks-redup);
+}
+
+/* Kelas utilitas untuk lebar kolom standar dan perataan teks tabel */
+.col-no      { width: 56px; }
+.col-aksi    { width: 160px; }
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+
+/* Format nominal rupiah rata kanan dengan lebar angka seragam */
+.harga {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* Daftar terstruktur untuk tujuan wilayah dan tarif ongkir pada detail kurir */
+.zonasi-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.zonasi-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 7px 12px;
+    background-color: #f8fafc;
+    border: 1px solid var(--garis);
+    border-radius: 6px;
+    font-size: 13.5px;
+}
+
+.zonasi-tujuan {
+    color: var(--teks);
+}
+
+.zonasi-provinsi {
+    color: var(--teks-redup);
+}
+
+.zonasi-tarif {
+    font-weight: 600;
+    color: var(--biru-tombol);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* Area tombol navigasi kembali di bagian bawah kartu detail */
+.card-footer-actions {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--garis);
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Penjajaran dan gaya tombol Ubah serta Hapus pada kolom aksi tabel */
+.aksi {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+}
+
+.aksi form {
+    display: inline;
+    margin: 0;
+}
+
+.btn-edit,
+.btn-delete {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 5px 14px;
+    background: #ffffff;
+    border: 1px solid;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.btn-edit {
+    color: var(--biru-tombol);
+    border-color: #bcd4f0;
+}
+
+.btn-edit:hover {
+    background: #eef5fd;
+}
+
+.btn-delete {
+    color: var(--merah);
+    border-color: #efc4c2;
+}
+
+.btn-delete:hover {
+    background: #fdeceb;
+}
+
+/* Kapsul label (badge) untuk kode, jumlah data, role pengguna, dan status */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1;
+    padding: 5px 11px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #eef1f3;
+    color: #3d444a;
+    white-space: nowrap;
+}
+
+.badge.mono + .text-bold {
+    margin-left: 6px;
+}
+
+.badge-dark    { background: #333333; color: #ffffff; }
+.badge-info    { background: #e8f1fc; color: #1f5fa8; }
+.badge-success { background: #e6f6ec; color: #1d6b3f; }
+.badge-danger  { background: #fdeaea; color: #a82f2b; }
+.badge-lg      { font-size: 13px; padding: 6px 14px; }
+.badge-role    { text-transform: uppercase; letter-spacing: 0.4px; }
+
+/* Kelas utilitas untuk warna, ketebalan, dan font monospace teks */
+.text-muted  { color: var(--teks-redup); }
+.text-bold   { font-weight: 600; }
+.text-blue   { color: var(--biru-tombol); font-weight: 600; }
+.mono        { font-family: Consolas, 'Courier New', monospace; }
+small.text-muted { display: block; font-size: 12px; margin-top: 3px; }
+
+/* Struktur grup input formulir, label, tanda wajib, dan checkbox sejajar */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #444b52;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group .req {
+    color: var(--merah);
+}
+
+.form-group .checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--teks-redup);
+    cursor: pointer;
+    user-select: none;
+}
+
+.form-group .checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--biru-tombol);
+    cursor: pointer;
+}
+
+/* Gaya elemen input teks, dropdown select, textarea, serta state fokus dan error */
+.form-control {
+    width: 100%;
+    padding: 11px 14px;
+    margin: 0;
+    display: block;
+    border: 1px solid #c4cbd1;
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--teks);
+    background: #ffffff;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-control::placeholder {
+    color: #8a9199;
+}
+
+.form-control:focus {
+    border-color: var(--biru);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.25);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.form-control.input-error {
+    border-color: var(--merah);
+    background: #fffafa;
+}
+
+/* Pesan error validasi per kolom dan kelompok tombol aksi formulir */
+.field-error {
+    display: block;
+    margin-top: 6px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--merah);
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.link-kembali {
+    display: block;
+    text-align: center;
+    padding: 8px;
+    color: var(--teks-redup);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: color 0.15s, background-color 0.15s;
+}
+
+.link-kembali:hover {
+    color: var(--biru-tombol);
+    background-color: #f4f7fb;
+}
+
+/* Kotak notifikasi pesan kesalahan validasi dan notifikasi keberhasilan aksi */
+.alert-error {
+    background-color: #fdeceb;
+    color: #8f2a26;
+    border-left: 4px solid var(--merah);
+    padding: 12px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.alert-error ul {
+    margin-left: 18px;
+}
+
+.alert-success {
+    width: 100%;
+    max-width: 1100px;
+    background-color: #e8f6ee;
+    color: #1d6b3f;
+    border-left: 4px solid #2e9e63;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.alert-close {
+    background: none;
+    border: none;
+    color: #1d6b3f;
+    font-size: 22px;
+    line-height: 1;
+    padding: 0 6px;
+    cursor: pointer;
+}
+
+/* Penyesuaian tata letak responsif untuk layar tablet dan ponsel (maks 768px) */
+@media (max-width: 768px) {
+    .topnav {
+        padding: 0 16px;
+        min-height: 56px;
+    }
+    .topnav .menu {
+        gap: 16px;
+    }
+    .topnav .menu a {
+        padding: 12px 2px;
+    }
+    .topnav .menu .user-box {
+        padding-left: 0;
+        margin: 0;
+        border-left: none;
+        width: 100%;
+        justify-content: space-between;
+        padding-top: 10px;
+        padding-bottom: 12px;
+        border-top: 1px solid var(--garis);
+    }
+    .main {
+        padding: 20px 12px 32px;
+    }
+    .container {
+        padding: 20px 16px 24px;
+    }
+    .card {
+        padding: 24px 20px;
+    }
+    .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .zonasi-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}
+
+/* Menonaktifkan transisi animasi bagi pengguna dengan pengaturan reduce-motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
